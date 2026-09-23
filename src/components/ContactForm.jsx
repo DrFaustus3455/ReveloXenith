@@ -8,24 +8,7 @@ const FIELDS = [
   { name: 'phone', label: 'Phone Number', type: 'tel', required: false },
   { name: 'subject', label: 'Subject', type: 'text', required: true },
 ];
-const handleSubmit = (e) => {
-  e.preventDefault();
 
-  const message = `
-Hello Revelo Xenith,
-Name: ${form.name}
-Email: ${form.email}
-Phone: ${form.phone || 'Not provided'}
-Subject: ${form.subject}
-Message: ${form.message}
-  `.trim();
-
-  const phone = "923263321658"; // your WhatsApp number without + sign
-  const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-
-  window.open(url, "_blank");
-  setSubmitted(true);
-};
 
 // Modern glass contact form. Submission is handled client-side only
 // (no backend wired up) — shows a success state so the flow feels complete.
@@ -43,7 +26,25 @@ function ContactForm() {
   const handleChange = (e) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
+  
+  const handleSubmit = (e) => {
+  e.preventDefault();
 
+  const message = `
+Hello Revelo Xenith,
+Name: ${form.name}
+Email: ${form.email}
+Phone: ${form.phone || 'Not provided'}
+Subject: ${form.subject}
+Message: ${form.message}
+  `.trim();
+
+  const phone = "923263321658"; // your WhatsApp number without + sign
+  const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
+  window.open(url, "_blank");
+  setSubmitted(true);
+};
 
   if (submitted) {
     return (
